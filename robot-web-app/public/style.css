@@ -1,0 +1,584 @@
+:root {
+    --bg-dark: #0f172a;
+    --bg-panel: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+
+    --accent-blue: #3b82f6;
+    --accent-blue-grad: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+
+    --accent-orange: #f59e0b;
+    --accent-orange-grad: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+
+    --accent-purple: #8b5cf6;
+    --accent-purple-grad: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+
+    --accent-green: #10b981;
+    --border-color: #334155;
+
+    --font-main: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* --- Selection Screen (Preserved) --- */
+#selection-screen {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+}
+
+#selection-screen.active {
+    display: flex;
+}
+
+#selection-screen h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(to right, #60a5fa, #a78bfa);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 3rem;
+}
+
+.cards-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.robot-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    width: 200px;
+}
+
+.robot-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+}
+
+.robot-card img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1rem;
+    object-fit: contain;
+}
+
+/* --- Dashboard Layout --- */
+#command-screen {
+    display: none;
+    /* Toggled by JS */
+    height: 100vh;
+    grid-template-columns: 80px 1fr 1000px;
+    /* Sidebar | Main | Terminal */
+    background: var(--bg-dark);
+}
+
+#command-screen.active {
+    display: grid;
+}
+
+/* Sidebar */
+.sidebar {
+    background: #0f172a;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+    gap: 2rem;
+}
+
+.nav-item {
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    color: var(--accent-blue);
+    background: rgba(59, 130, 246, 0.1);
+}
+
+/* Main Content Area */
+.main-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+}
+
+/* Header Section */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.app-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-indicators {
+    display: flex;
+    gap: 1rem;
+}
+
+.status-capsule {
+    background: var(--bg-panel);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border-color);
+}
+
+/* Robot Overview Card */
+.overview-card {
+    background: var(--bg-panel);
+    padding: 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    border: 1px solid var(--border-color);
+    background: linear-gradient(180deg, #1e293b 0%, #172033 100%);
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-group input {
+    background: #0f172a;
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: white;
+    font-family: var(--font-mono);
+    width: 60px;
+    text-align: center;
+}
+
+.connect-btn {
+    background: #1e3a8a;
+    color: #93c5fd;
+    border: 1px solid #3b82f6;
+    padding: 8px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.connect-btn:hover {
+    background: #3b82f6;
+    color: white;
+}
+
+/* Mode Cards */
+.mode-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mode-card {
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mode-card:hover {
+    transform: scale(1.01);
+}
+
+.mode-teleop {
+    background: var(--accent-blue-grad);
+}
+
+.mode-maintenance {
+    background: var(--accent-orange-grad);
+}
+
+.mode-conveyor {
+    background: var(--accent-purple-grad);
+}
+
+.mode-card i {
+    font-size: 1.8rem;
+    margin-right: 1rem;
+}
+
+.mode-card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.mode-icon {
+    opacity: 0.8;
+}
+
+/* Commands Row */
+.bottom-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Single column - speed widget removed */
+    gap: 1.5rem;
+    flex: 1;
+    /* Fill remaining height */
+    min-height: 0;
+    /* Enable scrolling in child */
+}
+
+/* Command List Panel */
+.panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.panel-header {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.command-list-container {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 5px;
+}
+
+.cmd-list-item {
+    background: #0f172a;
+    border: 1px solid #334155;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cmd-list-item:hover {
+    border-color: var(--accent-blue);
+    background: #1e293b;
+}
+
+.cmd-list-item i {
+    width: 24px;
+    text-align: center;
+    color: var(--accent-blue);
+}
+
+.cmd-list-item span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Speed Gauge Area */
+.gauge-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.gauge-canvas {
+    width: 220px;
+    height: 110px;
+    /* Semicircle */
+    position: relative;
+    overflow: hidden;
+}
+
+.gauge-bg {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 20px solid #334155;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    box-sizing: border-box;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+    /* Start full, clip later? Easier: use css border ticks */
+}
+
+/* Simplified CSS Gauge */
+.gauge {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    border-radius: 100px 100px 0 0;
+    background: #334155;
+    overflow: hidden;
+}
+
+.gauge-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 100px 100px 0 0;
+    background: #3b82f6;
+    transform-origin: bottom center;
+    transform: rotate(0deg);
+    /* 0 to 180 */
+    transition: transform 0.5s ease-out;
+}
+
+.gauge-cover {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    width: 160px;
+    height: 80px;
+    border-radius: 80px 80px 0 0;
+    background: var(--bg-panel);
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.gauge-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    z-index: 3;
+    margin-bottom: 0;
+}
+
+.gauge-unit {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+/* Terminal Panel */
+.terminal-panel {
+    background: #000;
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* Constrain to viewport height */
+    min-height: 0;
+    /* Allow flex children to shrink */
+}
+
+.terminal-header-bar {
+    background: #1e293b;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.term-title {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.term-controls button {
+    background: transparent;
+    border: 1px solid #475569;
+    color: #cbd5e1;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.term-controls button:hover {
+    background: #334155;
+}
+
+#terminal-output {
+    flex: 1;
+    min-height: 0;
+    /* Critical: allows flex child to shrink and scroll */
+    padding: 15px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    overflow-y: scroll;
+    /* Always show scrollbar */
+    overflow-x: scroll;
+    color: #4ade80;
+    white-space: pre-wrap;
+    word-break: break-all;
+    /* scroll-behavior removed - JS handles scrolling via requestAnimationFrame */
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 3px;
+}
+
+/* --- Modals --- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    /* Default state when active? No, JS sets this. */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.modal-terminal-container {
+    background: #000;
+    border-radius: 8px;
+    height: 400px;
+    /* Fixed height for xterm */
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.btn-red {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.btn-red:hover {
+    background: #dc2626;
+}
+
+.conveyor-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+.conveyor-btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    color: white;
+    transition: transform 0.1s;
+}
+
+.conveyor-btn:active {
+    transform: scale(0.95);
+}
+
+.btn-green {
+    background: var(--accent-green);
+}
+
+.btn-blue {
+    background: var(--accent-blue);
+}

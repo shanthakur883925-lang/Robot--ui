@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Login UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at top left, #3b3b44, #0f0f14 70%);
+            perspective: 1000px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Enhanced Glass Overlay for Background with Animation */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: -1;
+            animation: shimmer 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes shimmer {
+            0% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
+        }
+
+        /* Floating Particles for Cool Background Animation */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: floatParticles 6s linear infinite;
+        }
+
+        .particle:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            top: 30%;
+            left: 70%;
+            animation-delay: 1s;
+        }
+
+        .particle:nth-child(3) {
+            top: 50%;
+            left: 40%;
+            animation-delay: 2s;
+        }
+
+        .particle:nth-child(4) {
+            top: 70%;
+            left: 10%;
+            animation-delay: 3s;
+        }
+
+        .particle:nth-child(5) {
+            top: 20%;
+            left: 80%;
+            animation-delay: 4s;
+        }
+
+        .particle:nth-child(6) {
+            top: 60%;
+            left: 60%;
+            animation-delay: 5s;
+        }
+
+        @keyframes floatParticles {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-200px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Glass Card with Enhanced Transparency and Pulsing Animation */
+        .login-card {
+            width: 380px;
+            padding: 40px 35px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            /* More transparent glass */
+            backdrop-filter: blur(30px);
+            /* Stronger blur */
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.1);
+            /* Added glow */
+            color: #fff;
+            transform: rotateX(5deg) rotateY(-5deg);
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.1);
+            }
+
+            50% {
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        .login-card:hover {
+            transform: rotateX(0deg) rotateY(0deg);
+            animation-play-state: paused;
+            /* Pause pulse on hover for focus */
+        }
+
+        /* Title with Fade-in Animation */
+        .login-card h2 {
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Input Fields */
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 5px;
+            color: #fff;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 10px;
+            left: 5px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            transition: 0.3s ease;
+            pointer-events: none;
+        }
+
+        .input-group input:focus+label,
+        .input-group input:not(:placeholder-shown)+label {
+            top: -10px;
+            font-size: 11px;
+            color: #fff;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-bottom: 1px solid #9ca3af;
+            animation: inputGlow 0.5s ease-in-out;
+        }
+
+        @keyframes inputGlow {
+            0% {
+                border-bottom-color: rgba(255, 255, 255, 0.3);
+            }
+
+            50% {
+                border-bottom-color: #9ca3af;
+                box-shadow: 0 0 5px rgba(156, 163, 175, 0.5);
+            }
+
+            100% {
+                border-bottom-color: #9ca3af;
+            }
+        }
+
+        /* Button with Enhanced 3D Effect and Bounce Animation */
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            margin-top: 10px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            animation: buttonBounce 3s ease-in-out infinite;
+        }
+
+        @keyframes buttonBounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        button:hover {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.2));
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            animation-play-state: paused;
+        }
+
+        button:active {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        /* Error Message */
+        .error {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 13px;
+            color: #ff6b6b;
+            display: none;
+            animation: errorShake 0.5s ease-in-out;
+        }
+
+        @keyframes errorShake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating Particles -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <div class="login-card">
+        <h2>ROBOT LOGIN UI</h2>
+
+        <div class="input-group">
+            <input type="text" id="username" placeholder=" " />
+            <label>Username</label>
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="password" placeholder=" " />
+            <label>Password</label>
+        </div>
+
+        <button onclick="login()">LOGIN</button>
+        <div class="error" id="errorMsg">Invalid Username or Password</div>
+    </div>
+
+    <script>
+        function login() {
+            const user = document.getElementById("username").value.trim();
+            const pass = document.getElementById("password").value;
+            const error = document.getElementById("errorMsg");
+
+            if (user === "validation" && pass === "validation123") {
+                window.location.href = "index.html"; // change to robot dashboard page
+            } else {
+                error.style.display = "block";
+            }
+        }
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") login();
+        });
+    </script>
+
+</body>
+
+</html>

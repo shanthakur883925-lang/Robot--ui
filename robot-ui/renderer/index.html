@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Control Center</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Robot Selection Screen -->
+    <div id="selection-screen" class="screen active">
+        <h1>Select a Robot</h1>
+        <div class="cards-container">
+            <div class="card" data-robot="ZippyX">
+                <img src="../assets/zippyx.png" alt="ZippyX">
+                <h2>ZippyX</h2>
+            </div>
+            <div class="card" data-robot="Zippy6">
+                <img src="../assets/zippy6.png" alt="Zippy6">
+                <h2>Zippy6</h2>
+            </div>
+            <div class="card" data-robot="Zippy10">
+                <img src="../assets/zippy10.png" alt="Zippy10">
+                <h2>Zippy10</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Command Screen -->
+    <div id="command-screen" class="screen">
+        <header>
+            <button id="home-btn">
+                <span class="icon">🏠</span> Home
+            </button>
+            <div class="robot-info">
+                <img id="current-robot-img" src="" alt="Robot">
+                <h2 id="current-robot-name"></h2>
+            </div>
+        </header>
+
+        <main>
+            <div class="button-grid" id="button-grid">
+                <!-- Buttons will be injected here by JS -->
+            </div>
+
+            <div class="terminal-container">
+                <div class="terminal-header">Terminal Output</div>
+                <div id="terminal-output" class="terminal-output"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Validation Overlay -->
+    <div id="validation-overlay" class="overlay hidden">
+        <div class="loader"></div>
+        <p>Validating connection...</p>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="error-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Connection Failed</h3>
+            <p id="error-message"></p>
+            <button id="close-error">Close</button>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+
+</html>
