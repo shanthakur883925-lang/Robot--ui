@@ -8,3 +8,6 @@ build/
 .env
 .idea/
 .vscode/
+*.tar
+*.tar.gz
+*.sha256

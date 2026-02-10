@@ -9,7 +9,8 @@ RUN apk add --no-cache \
     python3 \
     py3-pip \
     build-base \
-    python3-dev
+    python3-dev \
+    coreutils
 
 # Set working directory
 WORKDIR /app

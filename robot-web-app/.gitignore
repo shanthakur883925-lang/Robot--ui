@@ -2,3 +2,6 @@ node_modules/
 bags/
 .DS_Store
 *.log
+*.tar
+*.tar.gz
+*.sha256
