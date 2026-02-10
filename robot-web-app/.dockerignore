@@ -1,0 +1,43 @@
+# Node modules
+node_modules
+npm-debug.log
+
+# Git files
+.git
+.gitignore
+.git_old
+
+# Documentation
+*.md
+!README.md
+
+# Development files
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode
+.idea
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+
+# Docker files (don't include in image)
+Dockerfile
+docker-compose.yml
+.dockerignore
+*.tar
+*.tar.gz
+
+# Scripts for deployment (not needed in container)
+deploy-to-github.sh
+push-to-github.sh
+quick-upload.sh
+create-public-link.sh
+start-server.sh
