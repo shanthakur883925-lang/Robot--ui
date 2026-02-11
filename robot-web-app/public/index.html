@@ -21,14 +21,12 @@
             <div class="robot-card" onclick="selectRobot('ZippyX')">
                 <img src="assets/zippyx.png" alt="ZippyX">
                 <h2>ZippyX</h2>
+                <button class="about-btn" onclick="event.stopPropagation(); showAbout('ZippyX')">About ZippyX</button>
             </div>
             <div class="robot-card" onclick="selectRobot('Zippy40')">
                 <img src="assets/zippy40.png" alt="Zippy40">
                 <h2>Zippy40</h2>
-            </div>
-            <div class="robot-card" onclick="selectRobot('Forklift')">
-                <img src="assets/forklift.png" alt="Forklift">
-                <h2>Forklift</h2>
+                <button class="about-btn" onclick="event.stopPropagation(); showAbout('Zippy40')">About Zippy40</button>
             </div>
         </div>
     </div>
@@ -209,6 +207,39 @@
                 <button class="conveyor-btn btn-green" onclick="runConveyor('forward')">Forward</button>
                 <button class="conveyor-btn btn-blue" onclick="runConveyor('backward')">Backward</button>
                 <button class="conveyor-btn btn-red" onclick="closeConveyorModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN 3: ABOUT SCREEN (Hardware Info) -->
+    <div id="about-screen" class="hidden">
+        <div class="about-container">
+            <div class="about-header">
+                <button onclick="hideAbout()" class="back-link"><i class="fas fa-arrow-left"></i> Back to
+                    Selection</button>
+                <h1 id="about-robot-name">Robot Name</h1>
+            </div>
+
+            <div class="about-content">
+                <div class="about-main-info">
+                    <img id="about-robot-main-img" src="" alt="Robot Image">
+                    <div class="about-text">
+                        <h3>General Information</h3>
+                        <p id="about-robot-desc">Description goes here.</p>
+                        <div class="hardware-path-box">
+                            <strong>Hardware Path:</strong> <code id="about-hardware-path">/dev/robot/...</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hardware-grid">
+                    <div class="panel">
+                        <div class="panel-header">Hardware Parts</div>
+                        <div id="hardware-parts-container" class="hardware-list">
+                            <!-- Items injected by JS -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

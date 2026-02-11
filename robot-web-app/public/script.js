@@ -106,29 +106,115 @@ const ROBOTS = {
             { flag: '-G', label: 'Goal Result' },
             { flag: '-O', label: 'Raw Odom' }
         ]
+    }
+};
+
+// ==========================================
+// HARDWARE PARTS DATA FOR ABOUT PAGE
+// ==========================================
+const HARDWARE_PARTS = {
+    'ZippyX': {
+        description: 'ZippyX is a high-performance autonomous mobile robot designed for industrial automation and material handling.',
+        hardwarePath: '/dev/zippyx/controller',
+        parts: [
+            {
+                name: 'Safety PLC',
+                image: 'images/zippyx/imgzippyxsplc1.png',
+                description: 'A specialized, high-reliability controller designed to manage critical safety functions in industrial automation, ensuring machines fail in a safe state to protect personnel and equipment.',
+                usage: 'Emergency Stop, Light Curtains / Laser Scanners, Enabling Switch Monitoring, Safety Relay Replacement, Fault Detection & Diagnostics',
+                specs: ''
+            },
+            {
+                name: 'PLC (Programmable Logic Controller)',
+                image: 'images/zippyx/imgzippyxplc2.png',
+                description: 'A rugged industrial computer that automates processes by reading inputs (sensors, switches), executing programmed logic (like ladder logic), and controlling outputs (motors, valves) in a continuous, rapid scan cycle, making it the brain of modern factory automation.',
+                usage: 'Safety Management, Simplified Maintenance, Real-Time Processing, HMI Integration',
+                specs: ''
+            },
+            {
+                name: 'BLDC Motor',
+                image: 'images/zippyx/imgzippyxbldcmotor3.png',
+                description: 'A Brushless DC motor is a highly efficient, durable, and electronically controlled motor that replaces traditional mechanical brushes with an electronic controller, allowing for precise speed and torque regulation.',
+                usage: 'High Efficiency & Power Density, Precise Motion Control',
+                specs: 'Power Rating: 100W'
+            },
+            {
+                name: 'PC (Intel UP Squared)',
+                image: 'images/zippyx/imgzippyxpc4.png',
+                description: 'A high-performance, compact, credit card-sized single-board computer developed by AAEON and powered by Intel processors. Widely used in robotics and industrial automation as an edge computing device due to its support for AI acceleration, vision-based applications, and real-time processing.',
+                usage: 'Expandability, Real-Time Capability, Software Support',
+                specs: 'Intel Apollo Lake/Elkhart Lake Processor'
+            },
+            {
+                name: 'Relay',
+                image: 'images/zippyx/imgzippyxrelay5.png',
+                description: 'An electrically operated switch with input terminals for control signals and operating contact terminals. Can have multiple contacts in various forms such as make contacts, break contacts, or combinations.',
+                usage: 'Motor Control, High-Power Load Management, Emergency Shutdowns',
+                specs: ''
+            },
+            {
+                name: 'Contactor',
+                image: 'images/zippyx/imgzippyxcon6.png',
+                description: 'An electro-mechanical switch designed for frequently making and breaking high-power electrical circuits, typically used for controlling electric motors, lighting, and heating loads.',
+                usage: 'High-Current Handling, Safety Interlocking, Remote Operation',
+                specs: ''
+            },
+            {
+                name: 'Proximity Sensor (Inductive)',
+                image: 'images/zippyx/imgzippyxPS7.png',
+                description: 'A non-contact, robust industrial device designed to detect metallic objects by generating an electromagnetic field from a coil, which induces eddy currents in the target.',
+                usage: 'Control lifter movement, counting, positioning, and speed measurement',
+                specs: 'High resistance to dust and moisture'
+            },
+            {
+                name: 'SICK Retroreflective Block Sensors',
+                image: 'images/zippyx/imgzippyxSRBS8.png',
+                description: 'Compact, robust photoelectric devices (e.g., GL10, G6, W100) that combine emitter and receiver in one housing, requiring a reflector to detect objects by interrupting the light beam.',
+                usage: 'Parcel detection',
+                specs: 'Model: GL10, G6, W100'
+            },
+            {
+                name: 'LED Indicator Lights',
+                image: 'images/zippyx/imgzippyxLED9.png',
+                description: 'Visual communication devices that enhance safety and reduce downtime by providing immediate, at-a-glance status updates on machine operations using color-coding.',
+                usage: 'Status indication, integrated with PLCs for real-time updates',
+                specs: 'Multi-color support'
+            },
+            {
+                name: 'E-Stop (Emergency Stop)',
+                image: 'images/zippyx/imgzippyxESTOP10.png',
+                description: 'A usually red, physical or wireless, latching button designed to immediately halt all movement and cut power to motors when pressed in dangerous situations.',
+                usage: 'Emergency stop, personnel safety',
+                specs: 'Latching type'
+            },
+            {
+                name: 'Debugging Port',
+                image: 'images/zippyx/imgzippyxDP11.png',
+                description: 'Communication interfaces (JTAG, SWD, UART) that allow direct communication with the device\'s microcontroller or processor for testing, programming, and diagnostics.',
+                usage: 'Directly connect to PLC, PC, and other hardware parts for debugging',
+                specs: 'JTAG, SWD, UART, I2C support'
+            },
+            {
+                name: 'On/Off Switch',
+                image: 'images/zippyx/imgzippyxono12.png',
+                description: 'Switches that manage electrical circuits by opening or closing a conductive path. Types include toggle, rocker, push-button, slide, and DIP switches.',
+                usage: 'Power on/off the robot',
+                specs: 'SPST to DPDT configurations'
+            }
+        ]
     },
-    'Forklift': {
-        name: 'Forklift',
-        image: 'assets/forklift.png',
-        buttons: [
-            { flag: '-s', label: 'SSH' },
-            { flag: '-i', label: 'Inspect Docker' },
-            { flag: '-x', label: 'Restart Docker' },
-            { flag: '-u', label: 'Update Registry' },
-            { flag: '-v', label: 'Update FW' },
-            { flag: '-o', label: 'Linear Odom' },
-            { flag: '-h', label: 'Hostname' },
-            { flag: '-p', label: 'Update Params' },
-            { flag: '-D', label: 'Download Bag' },
-            { flag: '-X', label: 'Reboot' },
-            { flag: '-d', label: 'Debug Detail' },
-            { flag: '-c', label: 'Client Debug' },
-            { flag: '-m', label: 'Topic Monitor' },
-            { flag: '-B', label: 'Barcode Data' },
-            { flag: '-E', label: 'Error Codes' },
-            { flag: '-A', label: 'Lifter Debug' },
-            { flag: '-G', label: 'Goal Result' },
-            { flag: '-O', label: 'Raw Odom' }
+    'Zippy40': {
+        description: 'Zippy40 is a compact and efficient mobile robot designed for warehouse automation and logistics operations.',
+        hardwarePath: '/dev/zippy40/controller',
+        parts: [
+            // Will be added later when user provides the data
+            {
+                name: 'Coming Soon',
+                image: 'assets/zippy40.png',
+                description: 'Hardware details for Zippy40 will be added soon.',
+                usage: 'To be defined',
+                specs: ''
+            }
         ]
     }
 };
@@ -908,4 +994,105 @@ window.sendControl = function (direction) {
     } else {
         console.log(`No action for ${direction} in ${currentControlMode} mode`);
     }
+}
+
+// ==========================================
+// ABOUT PAGE FUNCTIONS
+// ==========================================
+
+/**
+ * Show About page for selected robot with hardware parts
+ * @param {string} robotType - 'ZippyX' or 'Zippy40'
+ */
+window.showAbout = function(robotType) {
+    const aboutScreen = document.getElementById('about-screen');
+    const selectionScreen = document.getElementById('selection-screen');
+    
+    // Get hardware data for this robot
+    const robotData = HARDWARE_PARTS[robotType];
+    
+    if (!robotData) {
+        alert('Hardware information not available for this robot type.');
+        return;
+    }
+    
+    // Update robot name in header
+    document.getElementById('about-robot-name').textContent = robotType;
+    
+    // Update robot main image
+    const mainImage = document.getElementById('about-robot-main-img');
+    mainImage.src = ROBOTS[robotType].image;
+    mainImage.alt = robotType + ' Robot';
+    
+    // Update description
+    document.getElementById('about-robot-desc').textContent = robotData.description;
+    
+    // Update hardware path
+    document.getElementById('about-hardware-path').textContent = robotData.hardwarePath;
+    
+    // Populate hardware parts list
+    const partsContainer = document.getElementById('hardware-parts-container');
+    partsContainer.innerHTML = ''; // Clear existing content
+    
+    robotData.parts.forEach((part, index) => {
+        const partElement = document.createElement('div');
+        partElement.className = 'hardware-part-item';
+        partElement.style.opacity = '0';
+        partElement.style.transform = 'translateY(20px)';
+        
+        // Build specs display if available
+        const specsHTML = part.specs ? 
+            `<p class="hw-specs"><strong>Specifications:</strong> ${part.specs}</p>` : '';
+        
+        partElement.innerHTML = `
+            <div class="part-number">${index + 1}</div>
+            <div class="part-content">
+                <h3 class="part-title">${part.name}</h3>
+                <div class="part-image-container">
+                    <img src="${part.image}" alt="${part.name}" 
+                         onerror="this.src='assets/zippyx.png'; this.alt='Image not found'">
+                </div>
+                <div class="part-details">
+                    <p class="part-desc">${part.description}</p>
+                    <div class="part-usage">
+                        <strong>🔧 Usage in Robot:</strong>
+                        <p>${part.usage}</p>
+                    </div>
+                    ${specsHTML}
+                </div>
+            </div>
+        `;
+        
+        partsContainer.appendChild(partElement);
+        
+        // Animate each part with stagger effect
+        setTimeout(() => {
+            partElement.style.transition = 'all 0.5s ease';
+            partElement.style.opacity = '1';
+            partElement.style.transform = 'translateY(0)';
+        }, 50 * index);
+    });
+    
+    // Show about screen, hide selection screen
+    selectionScreen.classList.remove('active');
+    aboutScreen.classList.remove('hidden');
+    
+    // Scroll to top of about page
+    setTimeout(() => {
+        const aboutContainer = document.querySelector('.about-container');
+        if (aboutContainer) {
+            aboutContainer.scrollTop = 0;
+        }
+    }, 100);
+}
+
+/**
+ * Hide About page and return to robot selection
+ */
+window.hideAbout = function() {
+    const aboutScreen = document.getElementById('about-screen');
+    const selectionScreen = document.getElementById('selection-screen');
+    
+    aboutScreen.classList.add('hidden');
+    selectionScreen.classList.add('active');
 }

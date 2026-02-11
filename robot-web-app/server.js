@@ -9,7 +9,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-const PORT = 8000;
+const PORT = 8001;
 
 // ==========================================
 // ROBOT CONFIGURATION (matching validation script)
@@ -79,8 +79,6 @@ io.on('connection', (socket) => {
             scriptName = 'xvalidationzippyx.sh';
         } else if (robotType === 'Zippy40') {
             scriptName = 'xvalidationzippy40.sh';
-        } else if (robotType === 'Forklift') {
-            scriptName = 'xvalidationforklift.sh';
         } else {
             socket.emit('output', 'Error: Unknown robot type.\n');
             return;
